@@ -29,7 +29,8 @@ function leerDatosCurso(curso){
         imagen: curso.querySelector('img').src,
         titulo: curso.querySelector('h4').textContent,
         precio: curso.querySelector('.precio span').textContent,
-        id: curso.querySelector('a').getAttribute('data-id')
+        id: curso.querySelector('a').getAttribute('data-id'),
+        cantidad: 1
     }
 
 //Agrega alementos al arreglo del carrito 
@@ -47,12 +48,20 @@ function carritoHTML() {
 
     //Recorre el carrito y genera el HTML
     articulosCarrito.forEach(curso => {
+       const {imagen, titulo, precio, cantidad, id } = curso;
         const row = document.createElement('tr');
         row.innerHTML = `
         <td>
-            ${curso.titulo}
+            <img src="${imagen}" width="100">
         </td>
+        <td>${titulo}</td>
+        <td>${precio}</td>
+        <td>${cantidad}</td>
+        <td>
+            <a href"#" class="borrar-curso" data-id="${curso.id}"> x </td>
+        
         `;
+
         //Agrega el HTML del carrito  en el tbody
         contenedorCarrito.appendChild(row);
     });
@@ -66,6 +75,5 @@ function limpiarHTML() {
     while(contenedorCarrito.firstChild){
         contenedorCarrito.removeChild(contenedorCarrito.firstChild)
         
-
     }
 }
