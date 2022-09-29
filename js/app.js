@@ -32,12 +32,13 @@ function leerDatosCurso(curso){
         id: curso.querySelector('a').getAttribute('data-id'),
         cantidad: 1
     }
+
 //Revisa si un elemento ya existe en el carrito
 const existe = articulosCarrito.some( curso => curso.id === infoCurso.id );
 if(existe) {
     //Actualizamos la cantidad
     const cursos = articulosCarrito.map( curso => {
-        if( curso.id === infoCurso.id){
+        if( curso.id === infoCurso.id ) {
             curso.cantidad++;
             return curso; //Retorna el objeto actualizado
         } else {
@@ -62,6 +63,7 @@ carritoHTML();
 function carritoHTML() {
 
     //Limpiar el HTML
+    limpiarHTML();
 
     //Recorre el carrito y genera el HTML
     articulosCarrito.forEach(curso => {
